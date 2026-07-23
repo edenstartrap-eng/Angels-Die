@@ -1,0 +1,691 @@
+/* ============================================================
+   1. VARIABLES DE COLOR (la paleta que definiste)
+   ============================================================
+   Esto se llama "custom properties" o "variables CSS".
+   En vez de escribir "#F7F4EF" veinte veces en el archivo,
+   lo escribimos UNA vez aquí y luego usamos var(--crema).
+
+   ✏️ EDITA AQUÍ si quieres cambiar cualquier color de la página.
+   Cambias el valor una sola vez y se actualiza en TODOS lados
+   donde se usa esa variable.
+   ============================================================ */
+:root {
+  --crema: #F7F4EF;
+  --gris-claro: #EAEAEA;
+  --celeste-pastel: #CDECF7;
+  --rosado-pastel: #FFD8E7;
+  --amarillo-suave: #FFF4BF;
+
+  --texto-principal: #5A5450;
+  /* Un gris cálido (no negro puro) para que combine con la paleta suave.
+     Negro puro (#000) se vería muy "duro" al lado de estos colores pastel. */
+
+  --sombra-suave: rgba(90, 84, 80, 0.15);
+  /* Una sombra sutil, la vamos a reutilizar en tarjetas y botones. */
+
+  --radio-borde: 18px;
+  /* Qué tan redondeadas son las esquinas de tarjetas y botones.
+     Números más grandes = más redondeado (estilo "amigable"). */
+}
+
+
+/* ============================================================
+   2. RESET BÁSICO
+   ============================================================
+   Cada navegador trae márgenes y rellenos por defecto distintos.
+   Esto los pone todos en cero para empezar "desde una hoja en blanco"
+   y controlar nosotros mismos los espacios.
+   ============================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* box-sizing: border-box = cuando le pongas un ancho a algo,
+     el borde y el padding NO se suman por fuera. Hace la vida más fácil. */
+}
+
+
+/* ============================================================
+   3. ESTILO GENERAL DEL BODY (el "papel" del cuaderno digital)
+   ============================================================ */
+body {
+  background-color: var(--crema);
+  font-family: 'Quicksand', sans-serif;
+  /* ✏️ Esta es la tipografía general de toda la página.
+     Si cambiaste el link de Google Fonts, actualiza el nombre aquí también. */
+
+  color: var(--texto-principal);
+  line-height: 1.6;
+  /* line-height = espacio entre líneas de texto. 1.6 da aire, se siente
+     menos "apretado" y más cómodo de leer. */
+
+  overflow-x: hidden;
+  /* Evita que aparezca una barra de scroll horizontal por culpa
+     de las estrellas decorativas que están cerca de los bordes. */
+}
+
+
+/* ============================================================
+   4. CAPA DE ESTRELLAS (animación: parpadeo lento)
+   ============================================================ */
+#capa-estrellas {
+  position: fixed;
+  /* fixed = se queda pegada a la pantalla, no se mueve al hacer scroll. */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  /* Esto es importante: evita que las estrellas "bloqueen" los clics
+     en los botones que están debajo de ellas. */
+  z-index: 0;
+  /* z-index controla qué está "encima" de qué. 0 = bien al fondo. */
+}
+
+.estrella {
+  position: absolute;
+  color: var(--rosado-pastel);
+  font-size: 1.2rem;
+  animation: parpadeo 4s ease-in-out infinite;
+  /* Esto dice: "aplica la animación llamada parpadeo, que dura 4 segundos,
+     con una curva de velocidad suave (ease-in-out), y repítela para siempre". */
+}
+
+/* Hacemos que no todas las estrellas parpadeen exactamente igual,
+   para que se vea más natural y menos "robótico". */
+.estrella:nth-child(2) { animation-delay: 1s; }
+.estrella:nth-child(3) { animation-delay: 2s; }
+.estrella:nth-child(4) { animation-delay: 0.5s; }
+.estrella:nth-child(5) { animation-delay: 1.5s; }
+.estrella:nth-child(6) { animation-delay: 2.5s; }
+
+@keyframes parpadeo {
+  /* Una animación @keyframes define "puntos en el tiempo" (0%, 50%, 100%)
+     y el navegador dibuja automáticamente los pasos intermedios. */
+  0%, 100% { opacity: 0.2; }
+  50%      { opacity: 1; }
+}
+
+
+/* ============================================================
+   5. SECCIÓN: INICIO
+   ============================================================ */
+#inicio {
+  min-height: 90vh;
+  /* vh = "viewport height", 90vh = 90% del alto de la pantalla.
+     Así la sección de inicio ocupa casi toda la primera pantalla. */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+  /* z-index: 1, para quedar POR ENCIMA de las estrellas (z-index: 0). */
+}
+
+#foto-perfil {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  /* 50% en un cuadrado perfecto = círculo. */
+  object-fit: cover;
+  /* Esto evita que la foto se vea "estirada" si no es perfectamente cuadrada. */
+  border: 6px solid var(--celeste-pastel);
+  box-shadow: 0 8px 20px var(--sombra-suave);
+  margin-bottom: 1.5rem;
+
+  animation: flotar 5s ease-in-out infinite;
+  /* Animación: "imágenes que floten apenas", como pediste. */
+}
+
+@keyframes flotar {
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-10px); }
+  /* translateY mueve el elemento verticalmente sin afectar el layout
+     de lo que está a su alrededor (a diferencia de cambiar "margin" o "top"). */
+}
+
+#nombre-creador {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+#descripcion-corta {
+  max-width: 420px;
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+  opacity: 0.85;
+}
+
+#redes-sociales {
+  display: flex;
+  gap: 1rem;
+  /* gap = espacio entre los botones, más simple que usar margin en cada uno. */
+}
+
+
+/* ============================================================
+   6. BOTONES (con animación: "botones que respiren")
+   ============================================================
+   Aquí definimos el estilo BASE que comparten todos los botones/links
+   que actúan como botón, y luego variantes de color.
+   ============================================================ */
+.boton-red,
+.boton-carpeta {
+  display: inline-block;
+  padding: 0.7rem 1.6rem;
+  border-radius: 999px;
+  /* 999px = tan grande que las esquinas se ven totalmente redondas (forma píldora). */
+  text-decoration: none;
+  /* Quita el subrayado por defecto de los links <a>. */
+  border: none;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--texto-principal);
+  cursor: pointer;
+  box-shadow: 0 4px 12px var(--sombra-suave);
+
+  transition: transform 0.2s ease;
+  /* Esto hace que CUALQUIER cambio futuro de "transform" en este botón
+     (como el que ponemos abajo en :hover) sea suave, no instantáneo. */
+
+  animation: respirar 3s ease-in-out infinite;
+  /* Animación sutil y constante, como si el botón "respirara". */
+}
+
+@keyframes respirar {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.03); }
+  /* Un cambio de tamaño MUY pequeño (3%). Si lo sientes muy sutil o
+     muy exagerado, ajusta el 1.03 (por ejemplo 1.015 para algo casi imperceptible). */
+}
+
+.boton-red:hover,
+.boton-carpeta:hover {
+  transform: scale(1.08);
+  /* Un poco más de "crecimiento" cuando pasas el mouse por encima,
+     para dar sensación de que el botón responde a ti. */
+}
+
+.boton-instagram { background-color: var(--rosado-pastel); }
+.boton-tiktok    { background-color: var(--celeste-pastel); }
+.boton-youtube   { background-color: var(--gris-claro); }
+.boton-carpeta   { background-color: var(--amarillo-suave); }
+/* ✏️ EDITA AQUÍ: cambia estos colores por cualquier variable de la paleta
+   (o agrega colores nuevos en el paso 1 si necesitas más). */
+
+
+/* ============================================================
+   7. SECCIÓN: MENSAJES
+   ============================================================ */
+#mensajes {
+  max-width: 700px;
+  margin: 4rem auto;
+  /* margin: [arriba/abajo] auto -> "auto" a los lados centra el bloque
+     horizontalmente en la página. */
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+#mensajes h2,
+#detalles h2,
+#curiosidades h2,
+#videos h2,
+#musica h2 {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+}
+
+.mensaje {
+  background-color: white;
+  border-radius: var(--radio-borde);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 14px var(--sombra-suave);
+  border-left: 5px solid var(--celeste-pastel);
+  /* Un borde de color a un lado, como una "notita pegada", en vez
+     de un borde parejo en toda la tarjeta. Se siente más artesanal. */
+}
+
+.mensaje p {
+  font-family: 'Caveat', cursive;
+  /* Aquí usamos la tipografía tipo "escrita a mano" para dar
+     sensación personal, como pediste ("algo hecho por una persona"). */
+  font-size: 1.4rem;
+}
+
+.firma-mensaje {
+  display: block;
+  text-align: right;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-top: 0.5rem;
+}
+
+
+/* ============================================================
+   8. SECCIÓN: DETALLES (botón de entrada)
+   ============================================================ */
+#detalles {
+  text-align: center;
+  margin: 4rem auto;
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ============================================================
+   8.5. SECCIÓN: DATOS CURIOSOS
+   ============================================================ */
+#curiosidades {
+  max-width: 700px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.curiosidad {
+  background-color: white;
+  border-radius: var(--radio-borde);
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 14px var(--sombra-suave);
+  border-left: 5px solid var(--amarillo-suave);
+  /* Mismo estilo de "notita" que Mensajes, pero con borde amarillo
+     en vez de celeste, para diferenciar visualmente las secciones. */
+
+  display: flex;
+  flex-direction: column;
+  /* ✏️ flex-direction: column apila los elementos de arriba hacia abajo.
+     Antes esto era "fila" (por defecto), así que si ponías varios <p>
+     dentro de la misma cajita, se apretujaban uno al lado del otro.
+     Ahora, tengas 1 o 5 párrafos adentro, siempre se van a ver en columna. */
+  gap: 0.4rem;
+}
+
+.curiosidad p::before {
+  content: "✨ ";
+  /* Cada párrafo dentro de una .curiosidad ahora lleva su propia
+     estrellita al inicio, en vez de un solo ícono compartido. */
+}
+
+
+/* ============================================================
+   9. VENTANAS MODALES (Detalles) — la transición "tipo MacBook"
+   ============================================================
+   LO MÁS IMPORTANTE DE ESTE BLOQUE:
+   Por defecto, el modal está invisible Y encogido (scale 0.85).
+   Cuando JavaScript le agregue la clase "abierto", pasa a visible
+   y a su tamaño normal (scale 1), y como tiene "transition", ese
+   cambio se ve suave, no de golpe. Eso es exactamente el efecto
+   "ventana que se agranda suavemente" que pediste.
+   ============================================================ */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(40, 36, 34, 0.9);
+  /* ✏️ Antes esto era mucho más transparente (0.4) y dejaba ver el
+     contenido de atrás. Ahora es bastante más sólido para que el
+     modal se sienta como una ventana real, no como un filtro. Si
+     prefieres verle más o menos "a través", ajusta el último número
+     (0 = invisible, 1 = totalmente sólido). */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  visibility: hidden;
+  /* "visibility: hidden" además de opacity 0 evita que el modal
+     invisible siga "estorbando" los clics del resto de la página. */
+
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+  z-index: 9000;
+  /* ✏️ Subí este número harto (antes era 10) para que quede muy por
+     encima de cualquier otro elemento de la página, incluyendo casos
+     raros donde algunos navegadores hacen que los <iframe> de video
+     ignoren el orden normal de capas. */
+}
+
+.modal.abierto {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-contenido {
+  background-color: var(--crema);
+  border-radius: var(--radio-borde);
+  width: min(90%, 700px);
+  /* min() elige el más chico entre "90% de la pantalla" y "700px".
+     Así se ve bien tanto en celular como en pantallas grandes. */
+  max-height: 80vh;
+  overflow-y: auto;
+  /* Si hay muchas imágenes, aparece scroll DENTRO de la ventana,
+     en vez de que la ventana crezca más que la pantalla. */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+
+  transform: scale(0.85);
+  transition: transform 0.35s ease;
+  /* Este es el corazón del efecto "ventana de MacBook":
+     empieza un poco más chica (0.85) y crece a su tamaño real (1). */
+}
+
+.modal.abierto .modal-contenido {
+  transform: scale(1);
+}
+
+.barra-titulo-modal {
+  background-color: var(--celeste-pastel);
+  padding: 0.8rem 1.2rem;
+  font-weight: 700;
+  border-radius: var(--radio-borde) var(--radio-borde) 0 0;
+  /* Solo redondeamos las esquinas de ARRIBA (las 4 medidas son:
+     arriba-izq, arriba-der, abajo-der, abajo-izq). */
+}
+
+.cerrar-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: var(--texto-principal);
+  transition: transform 0.2s ease;
+}
+
+.cerrar-modal:hover {
+  transform: scale(1.2) rotate(90deg);
+  /* Un giro juguetón al pasar el mouse, nada agresivo. */
+}
+
+.galeria-detalles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  /* Esto crea una cuadrícula que se ajusta sola: tantas columnas de
+     mínimo 120px como quepan. Si hay 3 imágenes o 30, se acomoda solo. */
+  gap: 1rem;
+  padding: 2.5rem 1.5rem 1.5rem;
+}
+
+.detalle-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  /* Agrupa la imagen y su crédito como una sola unidad visual. */
+}
+
+.miniatura-detalle {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  /* Fuerza que cada miniatura sea un cuadrado perfecto, sin importar
+     las proporciones reales de la imagen original. */
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.miniatura-detalle:hover {
+  transform: scale(1.05);
+}
+
+.credito-dibujo {
+  font-size: 0.75rem;
+  color: var(--texto-principal);
+  opacity: 0.65;
+  text-decoration: none;
+  /* ✏️ Este es el "@usuario" clickeable debajo de cada dibujo.
+     Lleva directo al Instagram de quien lo hizo. */
+}
+
+.credito-dibujo:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+
+/* ============================================================
+   10. LIGHTBOX (ver un detalle en grande, estilo Instagram)
+   ============================================================
+   Usa la MISMA filosofía que el modal: oculto + encogido por defecto,
+   y la clase "abierto" (que pondrá JavaScript) lo revela suavemente.
+   ============================================================ */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+  z-index: 9500;
+  /* Más alto que .modal (9000), porque el lightbox se abre ENCIMA de él. */
+}
+
+.lightbox.abierto {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-contenido {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  max-width: 85%;
+  max-height: 85%;
+
+  transform: scale(0.85);
+  transition: transform 0.35s ease;
+  /* Este es el corazón del efecto "ventana de MacBook", ahora aplicado
+     a TODO el conjunto (imagen + crédito), no solo a la imagen sola. */
+}
+
+.lightbox.abierto .lightbox-contenido {
+  transform: scale(1);
+}
+
+.lightbox-contenido img {
+  max-width: 100%;
+  max-height: 75vh;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+#lightbox-credito-detalle {
+  color: white;
+  font-size: 0.95rem;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+#lightbox-credito-detalle:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+#lightbox-credito-detalle:empty {
+  display: none;
+  /* Si un detalle no tiene crédito asignado, este selector especial
+     ":empty" oculta el link automáticamente en vez de mostrar un
+     espacio vacío raro. */
+}
+
+.lightbox .cerrar-modal {
+  color: white;
+}
+
+
+/* ============================================================
+   11. SECCIÓN: MÚSICA
+   ============================================================ */
+#musica {
+  max-width: 700px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+#lista-canciones {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  /* Los reproductores de Spotify/YouTube que agregues (próximo paso)
+     van a acomodarse en columna, con espacio parejo entre ellos. */
+}
+
+
+/* ============================================================
+   12. FOOTER
+   ============================================================ */
+footer {
+  text-align: center;
+  padding: 3rem 2rem 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+#texto-footer {
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem;
+}
+
+#dedicatoria-final {
+  max-width: 500px;
+  margin: 1rem auto 0;
+  font-size: 0.85rem;
+  opacity: 0.6;
+  /* Discreto a propósito, como pediste ("en una esquina bien discreta"
+     lo aplicamos aquí como cierre de página, porque el footer YA es
+     el lugar más discreto y natural). */
+}
+
+
+/* ============================================================
+   13. FIRMA "® swaggel" (marca de agua fija)
+   ============================================================ */
+#firma-swaggel {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 0.75rem;
+  color: var(--texto-principal);
+  opacity: 0.5;
+  background-color: var(--crema);
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  z-index: 9999;
+  /* El número más alto de todo el archivo: siempre queda visible
+     por ENCIMA de modales y lightbox también. */
+  pointer-events: none;
+  /* Para que nunca bloquee un clic, ya que es solo decorativa. */
+}
+/* ============================================================
+   14. REPRODUCTOR DE MÚSICA DE FONDO (botón flotante)
+   ============================================================ */
+#reproductor-fondo {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  /* A la izquierda, para no chocar con la firma ® swaggel que está
+     a la derecha (mismo "piso" visual, pero cada uno en su esquina). */
+  z-index: 9999;
+}
+
+#boton-musica-fondo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--amarillo-suave);
+  box-shadow: 0 4px 12px var(--sombra-suave);
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: var(--texto-principal);
+
+  transition: transform 0.2s ease;
+  animation: respirar 3s ease-in-out infinite;
+  /* Reutilizamos la misma animación "respirar" que ya definimos
+     para los botones — así no repetimos código. */
+}
+
+#boton-musica-fondo:hover {
+  transform: scale(1.1);
+}
+
+/* Cuando la música esté sonando, JavaScript le va a agregar
+   la class "sonando" a este botón, y aquí lo hacemos girar
+   lentamente sin parar (como un disco de vinilo). */
+#boton-musica-fondo.sonando {
+  animation: girar 4s linear infinite;
+}
+
+@keyframes girar {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+
+/* ============================================================
+   15. SECCIÓN: VIDEOS
+   ============================================================ */
+#videos {
+  max-width: 800px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+#lista-videos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  /* auto-fit + minmax: tantas columnas de mínimo 280px como quepan.
+     Con 1 video ocupa todo el ancho, con varios se acomodan solos. */
+  gap: 1.5rem;
+}
+
+.video-envoltorio {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  /* 56.25% = proporción 16:9 (el formato estándar de YouTube).
+     Este truco del "padding-top" es lo que hace que el video sea
+     RESPONSIVO: se ajusta a cualquier ancho de pantalla sin deformarse. */
+  border-radius: var(--radio-borde);
+  overflow: hidden;
+  box-shadow: 0 4px 14px var(--sombra-suave);
+}
+
+.video-envoltorio iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  /* El iframe se estira para llenar exactamente el "envoltorio"
+     que ya tiene la proporción correcta gracias al padding-top de arriba. */
+}

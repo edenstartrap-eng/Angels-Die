@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<!--
+  Esto le dice al navegador: "lo que viene es HTML5".
+  Siempre va en la primera línea, sin excepción.
+-->
+<html lang="es">
+<!--
+  <html> es la "caja" que contiene TODA la página.
+  lang="es" le dice al navegador (y a lectores de pantalla) que el idioma es español.
+-->
+
+<head>
+  <!--
+    El <head> NO se ve en la página. Es información "de fondo":
+    título de la pestaña, codificación de texto, y el link al CSS.
+  -->
+
+  <meta charset="UTF-8">
+  <!-- Esto permite usar tildes, ñ, emojis, etc. sin que se vean como símbolos raros. -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Esto hace que la página se vea bien en celulares, no solo en computador. -->
+
+  <title>Página de Alex</title>
+  <!-- ✏️ EDITA AQUÍ: esto es lo que aparece en la pestaña del navegador. -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+  <!--
+    Esto trae DOS tipografías gratuitas de Google Fonts:
+    - "Quicksand": redondeada y cálida, para casi todo el texto.
+    - "Caveat": parece escrita a mano, para detalles con sensación personal
+      (como la firma o las citas en Mensajes).
+    ✏️ Si más adelante quieres otra letra, puedes buscarla en fonts.google.com,
+    copiar su link de la misma forma y reemplazar esta línea.
+  -->
+
+  <link rel="stylesheet" href="style.css">
+  <!--
+    Esta línea conecta este archivo con style.css.
+    Aquí SÍ va a tener contenido ya, es justo lo que vamos a escribir ahora.
+  -->
+</head>
+
+<body>
+  <!--
+    Todo lo que SÍ se ve en la página va dentro de <body>.
+    Voy a dividir la página en <section>, que son como "cajas" o "capítulos".
+    Cada una tiene un id (un nombre único) para que luego el CSS y el JS
+    sepan exactamente a cuál nos referimos.
+  -->
+
+  <!--
+    Capa decorativa de estrellas que parpadean lentamente, como pediste.
+    Son puramente decorativas (no tienen texto ni función), por eso
+    "position: fixed" en CSS las va a dejar flotando detrás de todo el contenido.
+    ✏️ Si quieres más o menos estrellas, solo agrega o borra líneas <span class="estrella">.
+    El símbolo dentro (✦) lo puedes cambiar por ⋆ · ✧ * o el que más te guste.
+  -->
+  <div id="capa-estrellas" aria-hidden="true">
+    <span class="estrella" style="top:8%; left:12%;">✦</span>
+    <span class="estrella" style="top:20%; left:80%;">✦</span>
+    <span class="estrella" style="top:45%; left:5%;">✦</span>
+    <span class="estrella" style="top:65%; left:90%;">✦</span>
+    <span class="estrella" style="top:85%; left:30%;">✦</span>
+    <span class="estrella" style="top:30%; left:50%;">✦</span>
+  </div>
+
+  <!-- ============================= -->
+  <!-- SECCIÓN: INICIO               -->
+  <!-- ============================= -->
+  <section id="inicio">
+
+    <img src="assetsstickers/alexito.png" alt="Foto de perfil" id="foto-perfil">
+    <!--
+      ✏️ EDITA AQUÍ: reemplaza "perfil.jpg" por el nombre real de tu imagen
+      dentro de assets/photos/. El atributo "alt" es el texto que se muestra
+      si la imagen no carga (y ayuda a personas con lectores de pantalla).
+    -->
+
+    <h1 id="nombre-creador">Alex</h1>
+    <!-- ✏️ EDITA AQUÍ: h1 = título principal, el más importante de la página. -->
+
+    <p id="descripcion-corta">
+      Un ángel con lindas rosas.
+    </p>
+    <!-- ✏️ EDITA AQUÍ: <p> = "párrafo", texto normal. -->
+
+    <div id="redes-sociales">
+      <!--
+        <div> es una "caja" sin significado especial, solo para agrupar cosas
+        (en este caso, los dos botones de redes sociales).
+      -->
+
+      <a href="https://instagram.com/angelsdie._" target="_blank" class="boton-red boton-instagram">
+        Instagram
+      </a>
+      <!--
+        <a> = "anchor", un link. href = a dónde lleva.
+        target="_blank" = se abre en una pestaña nueva (no saca al visitante de tu página).
+        ✏️ EDITA AQUÍ: cambia la URL por el Instagram real.
+      -->
+
+      <a href="https://tiktok.com/@nosotroscontraelmundo88" target="_blank" class="boton-red boton-tiktok">
+        TikTok
+      </a>
+
+      <a href="http://www.youtube.com/@angeldie-444" target="_blank" class="boton-red boton-youtube">
+        YouTube
+      </a>
+      <!-- ✏️ EDITA AQUÍ: cambia la URL por el TikTok real. -->
+
+    </div>
+  </section>
+
+
+  <!-- ============================= -->
+  <!-- SECCIÓN: MENSAJES              -->
+  <!-- ============================= -->
+  <section id="mensajes">
+    <h2>Mensajes</h2>
+    <!-- h2 = subtítulo, un escalón más chico que h1. -->
+
+    <div class="mensaje">
+      <p>"Alex, este es un pequeño detalle que quise hacerte para que puedas saber que hay gente que intentará apoyarte en las maneras que, en este caso, yo sé hacerlo. Ojalá puedas disfrutar este regalo y que, si gustas, podamos hacerlo más grande cada vez."</p>
+      <span class="firma-mensaje">— Edén</span>
+    </div>
+    <!--
+      ✏️ EDITA AQUÍ: copia y pega este bloque <div class="mensaje">...</div>
+      tantas veces como mensajes quieras mostrar. Es solo visual (no se guardan
+      mensajes nuevos automáticamente, como pediste).
+    -->
+  </section>
+
+
+  <!-- ============================= -->
+  <!-- SECCIÓN: DETALLES                -->
+  <!-- (antes "Dibujos"; la renombramos a algo -->
+  <!-- más general porque también puede incluir -->
+  <!-- regalos, cartas, capturas, lo que sea)   -->
+  <!-- ============================= -->
+  <section id="detalles">
+
+    <button id="boton-galeria-detalles" class="boton-carpeta">🖼️ Detalles</button>
+    <!--
+      CAPA 1: el punto de entrada. Todavía no hace nada (eso es JavaScript,
+      más adelante). Por ahora solo existe en el HTML.
+      ✏️ EDITA AQUÍ el texto del botón si "Detalles" no te convence del todo.
+    -->
+
+  </section>
+
+  <!--
+    ⚠️ IMPORTANTE — por qué el modal y el lightbox están AQUÍ AFUERA
+    y no adentro de <section id="detalles">:
+
+    Si un modal vive DENTRO de una sección que tiene su propio
+    "position: relative" + "z-index", esa sección se convierte en una
+    especie de "caja cerrada" — y aunque el modal tenga un z-index
+    gigante (9000), ese número solo cuenta ADENTRO de esa caja. Desde
+    afuera, toda la sección compite con las demás usando su propio
+    z-index (mucho más bajo), así que el modal puede terminar "atrapado"
+    detrás de otras secciones que vienen después en el HTML.
+
+    Por eso, CUALQUIER modal o lightbox que agregues en el futuro debe
+    vivir suelto aquí, como hijo directo de <body>, nunca metido dentro
+    de una <section>.
+  -->
+
+  <!--
+    CAPA 2: la "ventana" que muestra TODO en cuadrícula: dibujos,
+    capturas de pantalla, cartas, lo que sea que te hayan mandado.
+  -->
+  <div id="modal-detalles" class="modal">
+    <div class="modal-contenido">
+
+      <button id="cerrar-modal-detalles" class="cerrar-modal">✕</button>
+      <div class="barra-titulo-modal">Detalles</div>
+
+      <div class="galeria-detalles">
+        <!--
+          ✏️ CÓMO AGREGAR UN NUEVO DETALLE (con crédito a quien lo hizo):
+          1. Copia la imagen dentro de: assetsstickers/
+          2. Copia y pega este bloque completo, y edita las 3 partes marcadas:
+
+             <div class="detalle-item">
+               <img src="assetsstickers/NOMBRE.png" alt="Descripción corta" class="miniatura-detalle">
+               <a href="https://instagram.com/USUARIO" target="_blank" class="credito-dibujo">@USUARIO</a>
+             </div>
+
+             - "NOMBRE.png" -> el archivo que copiaste.
+             - "https://instagram.com/USUARIO" -> el perfil real del fan.
+             - "@USUARIO" -> el texto que se ve (usa el mismo usuario para no confundir).
+
+          La class="miniatura-detalle" es IMPORTANTE: es lo que le dice a
+          JavaScript "esta imagen se debe abrir en grande al hacer clic".
+        -->
+        <div class="detalle-item">
+          <img src="assetsstickers/blu.berry.148.png" alt="Dibujo hecho por blu.berry.148" class="miniatura-detalle">
+          <a href="https://instagram.com/blue.berry.148" target="_blank" class="credito-dibujo">@blu.berry.148</a>
+        </div>
+        <div class="detalle-item">
+          <img src="assetsstickers/angelsdie_fans.png" alt="Dibujo hecho por angelsdie_fans" class="miniatura-detalle">
+          <a href="https://instagram.com/angelsdie_fans" target="_blank" class="credito-dibujo">@angelsdie_fans</a>
+        </div>
+        <div class="detalle-item">
+          <img src="assetsstickers/lluxykiss_03.png" alt="Dibujo hecho por lluxykiss_03" class="miniatura-detalle">
+          <a href="https://instagram.com/lluxykiss_03" target="_blank" class="credito-dibujo">@lluxykiss_03</a>
+        </div>
+        <div class="detalle-item">
+          <img src="assetsstickers/coffeebuye.png" alt="Dibujo hecho por coffeebuye" class="miniatura-detalle">
+          <a href="https://instagram.com/coffeebuye" target="_blank" class="credito-dibujo">@coffeebuye</a>
+        </div>
+        <div class="detalle-item">
+          <img src="assetsstickers/puntocomnone.png" alt="Dibujo hecho por puntocomnone" class="miniatura-detalle">
+          <a href="https://instagram.com/puntocomnone" target="_blank" class="credito-dibujo">@puntocomnone</a>
+        </div>
+        <div class="detalle-item">
+          <img src="assetsstickers/_beoomiinex.png" alt="Dibujo hecho por _beoomiinex" class="miniatura-detalle">
+          <a href="https://instagram.com/_beoomiinex" target="_blank" class="credito-dibujo">@_beoomiinex</a>
+        </div>
+        <div class="detalle-item">
+          <img src="assetsstickers/lokitaporivan.789.png" alt="Dibujo hecho por lokitaporivan.789" class="miniatura-detalle">
+          <a href="https://instagram.com/lokitaporivan.789" target="_blank" class="credito-dibujo">@lokitaporivan.789</a>
+        </div>
+        <div class="detalle-item">
+          <img src="assetsstickers/niputaideabro.png" alt="Dibujo hecho por niputaideabro" class="miniatura-detalle">
+          <a href="https://instagram.com/niputaideabro" target="_blank" class="credito-dibujo">@niputaideabro</a>
+        </div>
+        <div class="detalle-item">
+          <img src="assetsstickers/fans__angeldie.png" alt="Dibujo hecho por fans__angeldie" class="miniatura-detalle">
+          <a href="https://instagram.com/fans__angeldie" target="_blank" class="credito-dibujo">@fans__angeldie</a>
+        </div>
+        <div class="detalle-item">
+          <img src="assetsstickers/papoi_ns.png" alt="Dibujo hecho por papoi_ns" class="miniatura-detalle">
+          <a href="https://instagram.com/papoi_ns" target="_blank" class="credito-dibujo">@papoi_ns</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!--
+    CAPA 3: el "lightbox" — la vista ampliada de UN solo detalle, estilo Instagram.
+    Fíjate que aquí NO hay una imagen fija: hay un único <img> vacío
+    (id="lightbox-imagen-detalle") que JavaScript va a rellenar dinámicamente
+    con la imagen en la que hiciste clic. Por eso solo necesitamos uno,
+    sin importar cuántos detalles tengas. Lo mismo pasa con el link de
+    crédito de abajo: JavaScript copia el usuario/link correcto cada vez.
+  -->
+  <div id="lightbox-detalles" class="lightbox">
+    <button id="cerrar-lightbox-detalles" class="cerrar-modal">✕</button>
+    <div class="lightbox-contenido">
+      <img id="lightbox-imagen-detalle" src="" alt="Detalle ampliado">
+      <a id="lightbox-credito-detalle" href="#" target="_blank"></a>
+    </div>
+  </div>
+
+
+  <!-- ============================= -->
+  <!-- SECCIÓN: DATOS CURIOSOS         -->
+  <!-- ============================= -->
+   <section id="curiosidades">
+
+   <h2>Datos curiosos</h2>
+
+   <div class="curiosidad">
+
+     <p>Un joven de 17 añitos que nació en Chile York.</p>
+
+     <p>El morado, negro, blanco y un verde oscuro particular son sus colores favoritos.</p>
+
+     <p>Tiene una gatita de 8 añitos que aparentemente le gusta subirse a la compu de Alex.</p>
+
+     <p>Le encantan unas flores blancas con pétalos morados, pero no se sabe el nombre de esas flores blancas con pétalos morados...</p>
+
+     <p>Le cuesta decir la palabra "celebrar".</p>
+
+   </div>
+    <!--
+      ✏️ EDITA AQUÍ: copia y pega este bloque <div class="curiosidad">...</div>
+      tantas veces como datos quieras mostrar. Puede ser cosas como
+      "empezó a hacer contenido en 2021" o "su primer video fue sobre X".
+      El creador también puede mandarte texto y tú solo lo pegas aquí.
+    -->
+  </section>
+
+
+  <!-- ============================= -->
+  <!-- SECCIÓN: VIDEOS                 -->
+  <!-- ============================= -->
+  <section id="videos">
+    <h2>SU PRIMER VIDEO! >< </h2>
+
+    <div id="lista-videos">
+      <!--
+        ✏️ CÓMO AGREGAR UN VIDEO DE YOUTUBE (sin descargar nada):
+        1. Ve al video en YouTube.
+        2. Clic en "Compartir" (Share) → "Insertar" (Embed).
+        3. YouTube te da un bloque de código que empieza con <iframe...>.
+        4. Copia y pega ESE bloque completo aquí adentro, tal cual te lo dio YouTube.
+        5. Repite por cada video. No necesitas tocar CSS ni JS, el estilo
+           ya está listo para que se vean en cuadrícula y de forma responsiva.
+
+        Dejo un ejemplo real de cómo se ve un iframe de YouTube (con un video
+        de muestra) para que sepas qué esperar. Reemplázalo por el real.
+      -->
+      <div class="video-envoltorio">
+        <iframe
+          src="https://www.youtube.com/embed/encQR4Wd5rA"
+          title="Video de los inicios de Alex"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <!--
+        ✏️ Nota sobre el formato del link:
+        - El link que copias para COMPARTIR es tipo:
+          https://youtu.be/encQR4Wd5rA?si=algo
+        - El que necesita el iframe para INCRUSTAR es tipo:
+          https://www.youtube.com/embed/encQR4Wd5rA
+        La diferencia es la parte "embed/" y que se quita todo lo que
+        va después del "?". Si usas "Compartir → Insertar" en YouTube
+        (como te expliqué arriba), el código que te da ya viene en el
+        formato correcto automáticamente, así no tienes que convertirlo a mano.
+      -->
+    </div>
+  </section>
+
+
+  <!-- ============================= -->
+  <!-- SECCIÓN: MÚSICA                 -->
+  <!-- (favoritas del creador, embebidas) -->
+  <!-- ============================= -->
+  <section id="musica">
+    <h2>Música</h2>
+
+    <div id="lista-canciones">
+      <!--
+        Aquí van los reproductores incrustados de Spotify o YouTube.
+        Todavía no pongo ninguno de ejemplo porque quiero explicarte
+        el paso a paso exacto cuando lleguemos a esta sección
+        (es distinto para Spotify que para YouTube).
+      -->
+    </div>
+  </section>
+
+
+  <!-- ============================= -->
+  <!-- FOOTER                          -->
+  <!-- ============================= -->
+  <footer>
+    <p id="texto-footer">Hecho con cariño por un ángel.</p>
+    <!-- ✏️ EDITA AQUÍ: cambia este texto por el que quieras. -->
+
+    <p id="dedicatoria-final">
+      Este sitio fue creado como un regalo. No para impresionar a internet,
+      sino para agradecer a una persona que hace felices a otras.
+    </p>
+    <!-- ✏️ EDITA AQUÍ si quieres cambiar la dedicatoria. -->
+  </footer>
+
+  <!--
+    Firma "® swaggel": la pediste como marca de agua discreta y fija
+    (siempre visible en una esquina, sin importar el scroll).
+    El "fija en la esquina" lo vamos a lograr con CSS en el próximo paso.
+  -->
+  <div id="firma-swaggel">® swaggel</div>
+
+  <!--
+    REPRODUCTOR DE MÚSICA DE FONDO
+    Este es un botón flotante, separado de la sección "Música" de más arriba.
+    Al presionarlo, JavaScript va a elegir UNA canción al azar de una lista
+    de 15 y la va a reproducir. Por qué es un botón y no algo automático:
+    los navegadores no dejan que el sonido se reproduzca solo sin que
+    el visitante haga clic primero (es una protección anti-molestias).
+
+    El <audio> no muestra nada en pantalla (no tiene atributo "controls"),
+    por eso el botón de al lado es el único control visible.
+  -->
+  <!--
+    REPRODUCTOR DE MÚSICA DE FONDO (vía YouTube)
+    Este es un botón flotante, separado de la sección "Música" de más arriba.
+    Al presionarlo, JavaScript va a elegir UNA canción al azar de una lista
+    de 15 videos de YouTube y la va a reproducir SOLO EL AUDIO, sin mostrar
+    el video. Por qué es un botón y no algo automático: los navegadores
+    no dejan que el sonido se reproduzca solo sin que el visitante haga
+    clic primero (es una protección anti-molestias).
+
+    El div de abajo (id="reproductor-youtube-fondo") empieza vacío.
+    La API de YouTube lo va a convertir automáticamente en un
+    reproductor de 0x0 píxeles (invisible) apenas cargue la página.
+    No lo borres ni le pongas contenido a mano.
+  -->
+  <div id="reproductor-fondo">
+    <button id="boton-musica-fondo" aria-label="Reproducir música de fondo">▶</button>
+    <div id="reproductor-youtube-fondo"></div>
+  </div>
+
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <!--
+    Esto carga la API oficial de YouTube (no es una librería externa
+    de terceros, es del propio YouTube). script.js la usa para controlar
+    play/pausa sin mostrar el video ni descargar nada.
+  -->
+
+  <script src="script.js"></script>
+  <!--
+    Esto conecta script.js, donde vivirá TODO el JavaScript
+    (abrir/cerrar la carpeta de regalos, animaciones, etc.).
+    Va al final del <body> a propósito: así el navegador ya cargó
+    todo el HTML antes de intentar ejecutar el JavaScript.
+  -->
+
+</body>
+</html>
